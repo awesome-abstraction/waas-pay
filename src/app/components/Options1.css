@@ -1,0 +1,47 @@
+.selected-wallet-name{
+  font-size: 18px;
+  color: var(--primary);
+  text-align: center;
+  font-family: 'Roboto';
+}
+
+.selected-wallet-placeholder {
+  font-size: 16px;
+  color: var(--grey);
+  text-align: center;
+  font-family: 'Roboto';
+}
+
+.selected-wallet-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--primary);
+  width: 220px;
+  height: 40px;
+  padding: 4px 12px;
+  margin-top: 32px;
+  position: relative;
+}
+
+.karat {
+  position: absolute;
+  right: 0;
+  width: 24px;
+  fill: var(--primary);
+  transition: all 0.25s ease-in-out;
+}
+
+.rotated {
+  transform: scale(1, -1);
+
+}
+
+.dropdown-option-container-enter{
+  opacity: 0;
+}
+
+.dropdown-option-container-enter-active{
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}

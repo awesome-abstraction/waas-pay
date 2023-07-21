@@ -1,5 +1,5 @@
 export default () => (
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 595.28 595.28" enable-background="new 0 0 595.28 595.28">
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 595.28 595.28" enableBackground="new 0 0 595.28 595.28">
 <rect id="color_x5F_8" x="106.448" y="137.802" fill="#FFFFFF" width="322.696" height="306.793"></rect>
 <path id="color_x5F_7" fill="#E3482C" d="M412.618,181.172v125.461H205.519V181.172H412.618z M131.988,149.396L131.988,149.396
 	c-6.265,0-11.339,5.073-11.339,11.338s5.074,11.339,11.339,11.339s11.339-5.074,11.339-11.339S138.253,149.396,131.988,149.396

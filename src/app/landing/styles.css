@@ -8,6 +8,16 @@
 
 }
 
+select {
+  width: 220px;
+  background: white;
+  border: none;
+  border-bottom: 1px solid var(--black);
+  margin: 16px 0;
+  margin-top: 42px;
+  -webkit-appearance: none;
+}
+
 input {
   -webkit-appearance: none;
   background-color: white;

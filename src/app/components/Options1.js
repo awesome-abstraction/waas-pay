@@ -2,15 +2,10 @@ import { useState } from "react"
 import { useSwiper } from 'swiper/react';
 import SignupSvg from "../assets/SignupSvg"
 import SelectableOption from "./SelectableOption";
+import KaratDown from "../assets/KaratDown"
 import "./Options1.css"
 
 export default ({ name }) => {
-  const swiper = useSwiper();
-
-  const getStartedHandler = (e) => {
-    swiper.slideNext()
-  }
-
   const options = [
     {
       id: 1,
@@ -31,18 +26,47 @@ export default ({ name }) => {
       requiresAdditionalInfo: true
     },
   ]
+  const selectOptions = [{
+    id: "safe",
+    name: "Safe"
+  }, {
+    id: "biconomy",
+    name: "Biconomy"
+  }]
+
+  const [isDropdownClicked, setIsDropdownClicked] = useState(false);
+  const [selectedWallet, setSelectedWallet] = useState();
+
 
   return(
     <div className="slide-padding signup-container slide-scrollable">
       <SignupSvg className={"options-fixed-background"}/>
       <div className="slide-text-container slide-text-container-scrollable" style={{"marginTop": "40px"}}>
         <h1>
-          {`Hey ${name}, lets get started with Account Recovery`}
+          {`What sort of wallet do you want to create for ${name}`}
         </h1>
         <h3>
-          You can select as many or little options to help recover your account in the event you lose it.
+          Different wallets come with different features, pick the ones that fit best for your needs.
         </h3>
-        {options.map((option) => <SelectableOption key={option.id} {...option}/>)}
+        <div style={{ "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+          <div onClick={() => {
+              setIsDropdownClicked(!isDropdownClicked)
+          }} className="selected-wallet-container">
+              {selectedWallet ? <span className="selected-wallet-name">{selectedWallet.name}</span> : <span className="selected-wallet-placeholder">Select a wallet</span>}
+              <KaratDown className={`${isDropdownClicked && "rotated"} karat`}/>
+          </div>
+            
+        </div>
+        <div>
+          <CSSTransition in={isDropdownClicked} timeout={300} classNames="dropdown-option-container">
+            {selectOptions.map(option => <div key={option.id}>
+              {option.name}
+            </div>)}
+          </CSSTransition>
+        </div>
+
+
+        {/* {options.map((option) => <SelectableOption key={option.id} {...option}/>)} */}
       </div>
     </div>
   )

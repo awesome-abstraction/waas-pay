@@ -21,11 +21,11 @@ export default ({ name, setName }) => {
           Welcome to Wallet
         </h1>
         <h3>
-          Customize your wallet with how it suits your lifestyle
+          Create and customize wallets for the masses.
         </h3>
         <br/>
         <h3 style={{"marginTop": "6px"}}>
-          What is your name?
+          What is your company name?
         </h3>
         <input value={name} onChange={changeHandler} className="name-signup" placeholder="Type your name here"/>
         <br />
