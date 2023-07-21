@@ -1,0 +1,15 @@
+type Testing {
+  name: String
+}
+
+type Query {
+  testings: [Testing]
+}
+
+type AddTestingResponse {
+  status: String
+}
+
+type Mutation {
+  addTesting(name: String): AddTestingResponse
+}

@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["./schema.gql"],
+  "exclude": ["node_modules", "**/*spec.ts"],
+  "compilerOptions": {
+    "sourceRoot": "/",
+    "sourceMap": true,
+    "inlineSources": true,
+    "noEmitHelpers": true,
+    "importHelpers": true
+  }
+}
