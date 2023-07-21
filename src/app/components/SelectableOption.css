@@ -1,14 +1,3 @@
-.selectable-option {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid var(--primary);
-  transition: height 0.5s ease-out;
-  height: 100px;
-  margin: 24px 0;
-}
-
 .selectable-option-expanded {
   height: 650px;
 }
@@ -28,6 +17,128 @@
   font-family: 'Roboto';
 }
 
+.selectable-option-text-container{
+  width: fit-content;
+}
+
 .selectable-option-container {
-  padding-top: 24px;
+  display: flex;
+  flex-direction: row;
+  padding: 16px 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--primary);
+  transition: height 0.5s ease-out;
+  margin: 24px 0;
+  height: 100px;
+}
+
+.selectable-option-radio-outline {
+  height: 30px;
+  min-width: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--primary);
+  margin-right: 10px;
+  position: relative;
+}
+
+.selectable-option-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-button-fill {
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+}
+
+.radio-button-fill-enter {
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+  height: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  opacity: 0;
+
+}
+
+.radio-button-fill-enter-active {
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+  height: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+.radio-button-fill-enter-done {
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+  height: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  opacity: 1;
+  background-color: var(--primary);
+}
+
+.radio-button-fill-exit {
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+  height: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  opacity: 1;
+  background-color: var(--primary);
+}
+
+.radio-button-fill-exit-active {
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+  height: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: var(--primary);
+  transition: opacity 300ms ease-in-out;
+}
+
+.radio-button-fill-exit-done {
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+  height: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: var(--primary);
+}
+
+.selectable-modal {
+  width: 90%;
+  height: 90%;
+  background-color: var(--white);
+  padding: 24px 18px;
+}
+
+.title-modal{
+  font-size: 22px;
+}
+
+.title-description {
+  font-size: 14px;
 }

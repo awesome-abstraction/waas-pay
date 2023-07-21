@@ -15,17 +15,20 @@ export default ({ name }) => {
     {
       id: 1,
       title: "This is some fumby text",
-      description: "This is some more dumby text describing what the title means and what this does"
+      description: "This is some more dumby text describing what the title means and what this does",
+      requiresAdditionalInfo: false
     },
     {
       id: 2,
       title: "This is some fumby text",
-      description: "This is some more dumby text describing what the title means and what this does"
+      description: "This is some more dumby text describing what the title means and what this does",
+      requiresAdditionalInfo: true
     },
     {
       id: 3,
       title: "This is some fumby text",
-      description: "This is some more dumby text describing what the title means and what this does"
+      description: "This is some more dumby text describing what the title means and what this does",
+      requiresAdditionalInfo: true
     },
   ]
 
