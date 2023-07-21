@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useSwiper } from 'swiper/react';
 import SignupSvg from "../assets/SignupSvg"
 import SelectableOption from "./SelectableOption";
+import { CSSTransition } from 'react-transition-group';
 import KaratDown from "../assets/KaratDown"
 import "./Options1.css"
 
@@ -59,9 +60,11 @@ export default ({ name }) => {
         </div>
         <div>
           <CSSTransition in={isDropdownClicked} timeout={300} classNames="dropdown-option-container">
+            <div>
             {selectOptions.map(option => <div key={option.id}>
               {option.name}
             </div>)}
+            </div>
           </CSSTransition>
         </div>
 
