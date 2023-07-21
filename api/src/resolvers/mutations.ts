@@ -1,8 +1,22 @@
-import { MutationResolvers } from "../__generated__/types";
+import type { MutationResolvers, WalletFeature } from "../__generated__/types";
+
+export type DeserializedFeature = Omit<WalletFeature, "serializedParams"> & {
+  params: Record<string, any>;
+};
 
 const mutations: MutationResolvers = {
-  addTesting: async (_, { name }, { dataSources }) => {
-    return dataSources.db.addTesting({ name });
+  createWalletFromMetadata: async (_parent, { walletType, features }) => {
+    try {
+      const deserializedFeatures: DeserializedFeature[] = features.map(
+        ({ serializedParams, ...rest }) => ({
+          ...rest,
+          params: JSON.parse(serializedParams),
+        })
+      );
+      return { status: 200 };
+    } catch {
+      return { status: 400 };
+    }
   },
 };
 

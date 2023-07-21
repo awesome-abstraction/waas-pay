@@ -1,15 +1,24 @@
-type Testing {
-  name: String
+enum WalletType {
+  SAFE
+  BICONOMY
 }
 
-type Query {
-  testings: [Testing]
+input WalletFeature {
+  id: String!
+  serializedParams: String!
 }
 
-type AddTestingResponse {
-  status: String
+type CreateWalletFromMetadataResponse {
+  status: Int!
 }
 
 type Mutation {
-  addTesting(name: String): AddTestingResponse
+  createWalletFromMetadata(
+    walletType: WalletType!
+    features: [WalletFeature!]!
+  ): CreateWalletFromMetadataResponse!
+}
+
+type Query {
+  ping: String!
 }

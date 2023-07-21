@@ -1,16 +1,11 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { readFileSync } from "fs";
-import { DataSource } from "./datasource";
 import resolvers from "./resolvers";
 
 const typeDefs = readFileSync("./schema.gql", { encoding: "utf-8" });
 
-export type ServerContext = {
-  dataSources: {
-    db: DataSource;
-  };
-};
+export type ServerContext = {};
 
 const start = async () => {
   const server = new ApolloServer<ServerContext>({
@@ -19,9 +14,7 @@ const start = async () => {
   });
 
   const { url } = await startStandaloneServer(server, {
-    context: async () => {
-      return { dataSources: { db: new DataSource() } };
-    },
+    context: async () => ({}),
   });
 
   console.log(`🚀 Server listening at: ${url}`);
