@@ -1,5 +1,5 @@
 
-export default ({ className }) => (<svg className={className} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 595.28 595.28" enable-background="new 0 0 595.28 595.28">
+export default ({ className }) => (<svg className={className} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 595.28 595.28" enableBackground="new 0 0 595.28 595.28">
 <path id="color_x5F_7" fill="#FEBE40" d="M202.203,232.922c0-2.267,1.842-4.11,4.11-4.11s4.139,1.842,4.139,4.11
 	c0,2.296-1.872,4.139-4.139,4.139C204.046,237.061,202.203,235.218,202.203,232.922z M193.246,236.918c2.268,0,4.11-1.87,4.11-4.139
 	c0-2.267-1.843-4.109-4.11-4.109c-2.268,0-4.11,1.842-4.11,4.109C189.136,235.048,190.978,236.918,193.246,236.918z
