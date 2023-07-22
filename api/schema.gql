@@ -9,13 +9,13 @@ type Query {
 
 type UserWalletsMeta {
   companyName: String!
-  walletType: WalletType!
   minaSmartContractAddress: String!
+  walletType: WalletType!
 }
 
 type UserWalletsMetaResponse {
-  status: Int!
   data: UserWalletsMeta
+  status: Int!
 }
 
 type Query {
@@ -24,8 +24,8 @@ type Query {
 
 input SaveUserWalletsMetaInput {
   companyName: String!
-  walletType: WalletType!
   minaSmartContractAddress: String!
+  walletType: WalletType!
 }
 
 type SaveUserWalletsMetaResponse {
