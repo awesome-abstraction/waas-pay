@@ -75,7 +75,9 @@ const ForDan = () => {
       </button>
       <pre>{JSON.stringify(exampleInput, null, 2)}</pre>
       <div>
-        <p style={{ fontSize: "0.6rem" }}>Custom Company Name</p>
+        <p style={{ fontSize: "0.6rem" }}>
+          Custom Company Name (to get diff result)
+        </p>
         <input
           placeholder="Enter company name"
           value={inputValue}
