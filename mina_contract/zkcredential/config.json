@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "deployAliases": {
+    "berkeley": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/berkeley.json",
+      "feepayerKeyPath": "/Users/yuchenpeng/.cache/zkapp-cli/keys/soduku.json",
+      "feepayerAlias": "soduku",
+      "fee": "0.1",
+      "smartContract": "SudokuZkApp"
+    }
+  }
+}
