@@ -90,4 +90,17 @@
   border: 1px solid var(--primary);
   border-top: 0;
   width: 220px;
+  background-color: var(--white);
+}
+
+ul {
+  text-align: start;
+  font-family: 'Roboto Slab';
+  color: var(--grey);
+  font-size: 14px;
+  padding: 12px 16px;
+}
+
+li {
+  text-align: start;
 }

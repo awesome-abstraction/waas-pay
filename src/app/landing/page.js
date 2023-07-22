@@ -6,6 +6,7 @@ import { Controller } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Signup from '../components/Signup';
 import Options1 from '../components/Options1'
+import Options2 from "../components/Options2"
 import ChevronForward from "../assets/ChevronForward";
 
 // Import Swiper styles
@@ -40,10 +41,12 @@ export default function App() {
         <SwiperSlide>
           <Options1 name={name}/>
         </SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>
+          <Options2 />
+        </SwiperSlide>
         <SwiperSlide>Slide 4</SwiperSlide>
       </Swiper>
-      {renderButton && <div className='next-button'>
+      {renderButton && <div className='next-button' onClick={() => swiper.slideNext()}>
         <ChevronForward className={"chevron-forward"} />
       </div>}
     </>
