@@ -21,8 +21,17 @@ import { Pagination } from 'swiper/modules';
 
 export default function App() {
   const [name, setName] = useState("")
+  const [selectedWallet, setSelectedWallet] = useState()
+  const [formValues, setFormValues] = useState([{
+    label: "Name",
+    type: "text",
+    value: "",
+    placeholder: "Enter an identifier for this user"
+  }])
   const [swiper, setSwiper] = useState(null);
   const [renderButton, setRenderButton] = useState(false)
+  const [loginFillColor, setLoginFillColor] = useState("#E84393");
+
   return (
     <>
       <Swiper
@@ -39,10 +48,17 @@ export default function App() {
           <Signup name={name} setName={setName} setRenderButton={setRenderButton}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Options1 name={name}/>
+          <Options1 selectedWallet={selectedWallet} 
+            setSelectedWallet={setSelectedWallet} 
+            name={name} 
+            fill={loginFillColor} 
+            setupFillColor={setLoginFillColor}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Options2 />
+          <Options2 fill={loginFillColor}
+            formValues={formValues}
+            setFormValues={setFormValues}
+          />
         </SwiperSlide>
         <SwiperSlide>Slide 4</SwiperSlide>
       </Swiper>

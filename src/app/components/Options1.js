@@ -24,7 +24,7 @@ const BICONOMY_WALLET_DATA = {
   textColor: "#FF4F17"
 }
 
-export default ({ name }) => {
+export default ({ name, fill, setupFillColor, selectedWallet, setSelectedWallet }) => {
   const options = [
     {
       id: 1,
@@ -54,8 +54,6 @@ export default ({ name }) => {
   }]
 
   const [isDropdownClicked, setIsDropdownClicked] = useState(false);
-  const [selectedWallet, setSelectedWallet] = useState();
-  const [loginFillColor, setLoginFillColor] = useState("#E84393");
   const nodeRef = useRef(null);
 
   const dropdownHandler = () => {
@@ -81,8 +79,8 @@ export default ({ name }) => {
       point1 = SAFE_WALLET_DATA.points[0]
       point2 = SAFE_WALLET_DATA.points[1]
       point3 = SAFE_WALLET_DATA.points[2]
-      if (loginFillColor !== SAFE_WALLET_DATA.textColor){
-        setLoginFillColor(SAFE_WALLET_DATA.textColor)
+      if (fill !== SAFE_WALLET_DATA.textColor){
+        setupFillColor(SAFE_WALLET_DATA.textColor)
       }
     }
     if (selectedWallet.id === "biconomy") {
@@ -91,8 +89,8 @@ export default ({ name }) => {
       point2 = BICONOMY_WALLET_DATA.points[1]
       point3 = BICONOMY_WALLET_DATA.points[2]
       color = BICONOMY_WALLET_DATA.textColor
-      if (loginFillColor !== BICONOMY_WALLET_DATA.textColor){
-        setLoginFillColor(BICONOMY_WALLET_DATA.textColor)
+      if (fill !== BICONOMY_WALLET_DATA.textColor){
+        setupFillColor(BICONOMY_WALLET_DATA.textColor)
       }
     }
     return (
@@ -115,7 +113,7 @@ export default ({ name }) => {
 
   return(
     <div className="slide-padding signup-container slide-scrollable">
-      <SignupSvg className={"options-fixed-background"} loginFill={loginFillColor}/>
+      <SignupSvg className={"options-fixed-background"} loginFill={fill}/>
       <div className="slide-text-container slide-text-container-scrollable" style={{"marginTop": "40px"}}>
         <h1>
           {`What sort of wallet do you want to create for ${name}`}

@@ -5,6 +5,7 @@ import "./Signup.css"
 
 export default ({ name, setName, setRenderButton }) => {
   const swiper = useSwiper();
+
   const changeHandler = (e) => {
     setName(e.target.value)
   }
