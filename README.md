@@ -12,7 +12,7 @@ Nobody disputes that ERC4337 is a major catalyst on our journey to on-board the 
 Armed with the ability to create seamless user experiences for web2 users, we set out to build an end-to-end payments solution for an organization’s employees and vendors. Our no-code platform abstracts away the difficulties of customizing & deploying smart contract accounts, reliably handles sensitive vendor/employee data using SNARK proofs, & implements zkBob to facilitate privacy-preserving payments - all on one of the most popular L2s: Polygon.
 
 ### 📖 Description
-WaaS Pay is a no-code tool for organizations to build-their-own smart account wallets (ERC4337) & deploy them on behalf of web2 users, on demand, using only a URL link. Wallets are issued with all the popular account-abstraction features & come with privacy-preserving functionality out of the box, enabling a seamless onboarding experience to web3 for private and instantaneous transactions on the blockchain between organizations & individuals alike.
+WaaS Pay is a no-code tool for organizations to build-their-own smart contract accounts (ERC-4337) & deploy them on behalf of web2 users, on demand, using only a URL link. Wallets are issued with all the popular account-abstraction features & come with privacy-preserving functionality out of the box, enabling a seamless onboarding experience for private and instantaneous transactions on the blockchain between organizations & individuals alike.
 
 As an organization wishing to leverage the blockchain for instant payments to my employees or vendors while preserving privacy, WaaS Pay let’s me:
 
@@ -24,7 +24,7 @@ As an organization wishing to leverage the blockchain for instant payments to my
 As a wallet recipient, I receive a feature-rich wallet to privately receive and send funds on Polygon without needing to know anything about web3:
 
 - Log-in with my favorite authentication methods - no seed phrases or master passwords.
-- A zkBob Account already set up for instantly receiving and sending funds privately and anonymously.
+- A zkBob Account already set up for instantly receiving direct deposit funds
 - The unique and sensitive credentials I use to redeem my wallet never leave my device & are secured by zero-knowledge proofs.
 - Transactions are sponsored - gas is paid for by the wallet issuer.
 - Fiat on and off-ramps are provided by trusted partners like Stripe and Monerium.
@@ -35,10 +35,10 @@ WaaS Pay is a simple React app that leverages a number of novel technologies to 
 - **Safe{Core} Protocol Kit** and the **Safe{Core} Account Abstraction SDK** are used to instantiate & deploy smart contract account wallets. The Auth Kit, OnRamp Kit, and Relay Kit are all used alongside the Protocol Kit to deploy feature-rich smart contract accounts.
 - Custom **Safe** plugins to further enhance the user experience and capabilities of the smart contract accounts for a wider range of use cases, including:
     - TODO
-- **zkBob** is used to facilitate anonymous transactions between the end-user and issuing organization. Upon wallet creation, a zkAccount is instantiated & linked so that the organization (e.g. employer) can send funds to the recipient privately.
+- **zkBob Direct Deposit** is used to facilitate anonymous transactions between the issuing organization & the recipient. Upon wallet creation, a zkAccount is instantiated & linked so that the organization (e.g. employer) can directly deposit funds to the recipient's zkAccount - obfuscating both the recipient & the amount.
 - **Mina Protocol’s SnarkyJS library** is used for generating and validating the zero-knowledge proofs required to verify that only the intended recipient of a wallet can actually deploy one.
-- **Polygon zkEVM** is the blazing fast and secure L2 blockchain that all the smart contract accounts are deployed to.
-- A self-hosted *IPFS node* deployed using Helia is used to store all the hashed sensitive metadata from vendors & employees.
+- **Polygon** is the blazing fast and secure L2 blockchain that all the smart contract accounts are deployed to.
+- A self-hosted **IPFS node** deployed using Helia is used to store all the hashed sensitive metadata from vendors & employees.
 
 #### 📍 Roadmap
 
