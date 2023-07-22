@@ -6,6 +6,7 @@ const mutations: MutationResolvers = {
     try {
       const jsonNode = json(ipfsNode);
       const cid = await jsonNode.add(input);
+      console.log("Created CID", cid);
       return {
         status: 200,
         cid: cid.toString(),
