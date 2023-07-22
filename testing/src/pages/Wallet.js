@@ -34,6 +34,13 @@ const testWalletMetaData = {
 
 const Wallet = () => {
   const { uuid } = useParams();
+  const {
+    data: ic,
+    loading: ipfsLoading,
+    error: ipfsError,
+  } = useGetIpfs({
+    cid: "bagaaierasords4njcts6vs7qvdjfcvgnume4hqohf65zsfguprqphs3icwea",
+  });
   const [mutate, { data, loading, error }] = useMutation(IPFS_MUTATION, {
     variables: { input: testWalletMetaData },
   });
@@ -54,6 +61,8 @@ const Wallet = () => {
       <p>{uuid}</p>
       <p>Data: {JSON.stringify(data)}</p>
       <p>QData: {JSON.stringify(qData)}</p>
+      <p>ipfsData: {JSON.stringify(ic)}</p>
+
       <button
         onClick={() => {
           mutate();

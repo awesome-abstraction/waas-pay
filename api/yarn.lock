@@ -2907,6 +2907,10 @@ chokidar@^3.5.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
+cid@multiformats/cid:
+  version "0.0.0"
+  resolved "https://codeload.github.com/multiformats/cid/tar.gz/e5b6a3636d05234bc34bef873926c706afc1bd89"
+
 clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"

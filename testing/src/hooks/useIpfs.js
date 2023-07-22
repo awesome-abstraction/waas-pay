@@ -39,12 +39,13 @@ export const useGetIpfs = ({ cid }) => {
 
         const j = json(heliaNode);
 
-        const cidss = await j.add(testWalletMetaData, blockstore);
+        //const cidss = await j.add(testWalletMetaData, blockstore);
 
-        //const cidss = CID.parse(CID_C);
+        const cidss = CID.parse(cid);
         console.log("cidss", cidss);
         //const j = strings(heliaNode);
         const results = await j.get(cidss, blockstore);
+        console.log("/", results);
         //  const results = await ipfs.get(cid);
         //   const results = { nodeId, nodeIsOnline, j: heliaNode.libp2p. };
 
