@@ -1,3 +1,5 @@
+<img src="./assets/large-logo.png" width="1000">
+
 👛 WaaS Pay
 ===========
 
