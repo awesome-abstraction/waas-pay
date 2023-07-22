@@ -5,8 +5,13 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { FsBlockstore } from "blockstore-fs";
 import { readFileSync } from "fs";
 import { createHelia } from "helia";
-import type { AsyncReturnType } from "types";
 import resolvers from "./resolvers";
+
+type AsyncReturnType<T extends (...args: any) => Promise<any>> = T extends (
+  ...args: any
+) => Promise<infer R>
+  ? R
+  : any;
 
 const fsBlocktore = new FsBlockstore("./var");
 const typeDefs = readFileSync("./schema.gql", { encoding: "utf-8" });
