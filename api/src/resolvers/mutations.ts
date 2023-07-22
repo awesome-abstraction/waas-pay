@@ -1,7 +1,8 @@
+import { json } from "@helia/json";
 import type { MutationResolvers, WalletFeature } from "../__generated__/types";
 
 export type DeserializedFeature = Omit<WalletFeature, "serializedParams"> & {
-  params: Record<string, any>;
+  params: Record<string, any> | null;
 };
 
 const mutations: MutationResolvers = {
@@ -10,12 +11,70 @@ const mutations: MutationResolvers = {
       const deserializedFeatures: DeserializedFeature[] = features.map(
         ({ serializedParams, ...rest }) => ({
           ...rest,
-          params: JSON.parse(serializedParams),
+          params: serializedParams ? JSON.parse(serializedParams) : null,
         })
       );
+
+      const deserializedPayload = { walletType, features };
+      /*
+      deserializedPayload example:
+
+      {
+        walletType: 'SAFE',
+        features: [
+          {
+            id: 'auth',
+            // optional
+            params: {
+              arg1: value,
+              arg2: value
+            }
+          },
+          {
+            id: 'relay',
+            // optional
+            params: {
+              arg1: value
+          }
+        ]
+      }
+      */
+
       return { status: 200 };
     } catch {
       return { status: 400 };
+    }
+  },
+  safeToIpfsNode: async (_parent, { input }, { ipfsNode }) => {
+    try {
+      console.log("INPUT", input);
+      const { features, ...rest } = input;
+      const deserializedFeatures: DeserializedFeature[] = features.map(
+        ({ serializedParams, ...rest }) => ({
+          ...rest,
+          params: serializedParams ? JSON.parse(serializedParams) : null,
+        })
+      );
+
+      const jsonNode = json(ipfsNode);
+
+      // just save as one for now
+      const cid = await jsonNode.add({
+        features: deserializedFeatures,
+        ...rest,
+      });
+
+      console.log("CID", cid.toString());
+
+      return {
+        status: 200,
+        userCids: [{ phoneOrEmail: "", cid: cid.toString() }],
+      };
+    } catch (e) {
+      console.log("ERRR", e);
+      return {
+        status: 400,
+      };
     }
   },
 };

@@ -23,9 +23,6 @@ yarn-error.log*
 !.vscode/extensions.json
 .idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-/.next/
+
+var/**
+!var/README.md

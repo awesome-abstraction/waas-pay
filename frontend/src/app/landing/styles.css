@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap");
 
 :root {
   --black: #272727;
   --grey: #555555;
   --white: #ffffff;
-  --primary: #E84393;
-
+  --primary: #e84393;
+  --font-family: "Roboto Slab";
 }
 
 select {
@@ -28,12 +28,12 @@ input {
   color: var(--black);
   width: 100%;
   padding: 6px 2px;
-  font-family: 'Roboto Slab';
+  font-family: var(--font-family);
 }
 
 h1 {
   font-size: 24px;
-  font-family: 'Roboto Slab';
+  font-family: var(--font-family);
   font-weight: bold;
   color: var(--black);
   text-align: left;
@@ -42,7 +42,7 @@ h1 {
 
 h3 {
   font-size: 14px;
-  font-family: 'Roboto Slab';
+  font-family: var(--font-family);
   font-weight: normal;
   color: var(--grey);
   text-align: left;
@@ -50,7 +50,7 @@ h3 {
 
 p {
   font-size: 14px;
-  font-family: 'Roboto Slab';
+  font-family: var(--font-family);
   font-weight: normal;
   color: var(--grey);
   text-align: left;
@@ -58,7 +58,6 @@ p {
 
 #app {
   height: 100%;
-  
 }
 html,
 body {
@@ -91,7 +90,6 @@ body {
   align-items: center;
 }
 
-
 .swiper-slide img {
   display: block;
   width: 100%;
@@ -105,11 +103,11 @@ body {
   width: fit-content !important;
 }
 
-.swiper-pagination-bullet{
+.swiper-pagination-bullet {
   margin: 0 2px !important;
 }
 
-.landing{
+.landing {
   height: 200vh;
   width: 100vw;
   background-color: pink;
@@ -128,11 +126,11 @@ body {
   color: white;
   padding: 18px 12px;
   font-size: 16px;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   border-radius: 12px;
 }
 
-.swiper-pagination-bullet-active{
+.swiper-pagination-bullet-active {
   background-color: var(--primary) !important;
 }
 
@@ -154,7 +152,7 @@ path { transition: fill .75s ease; }
   padding-bottom: 100px;
 }
 
-.selectable-modal-background{
+.selectable-modal-background {
   width: 100vw;
   height: 100vh;
   position: absolute;
