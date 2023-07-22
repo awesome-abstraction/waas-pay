@@ -140,9 +140,11 @@ body {
   position: fixed;
 }
 
+path { transition: fill .75s ease; }
+
 .slide-text-container-scrollable{
   background: linear-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,1) 40px);
-  margin-top: 400px !important;
+  margin-top: 300px !important;
   padding-top: 80px;
   z-index: 1;
 }
@@ -161,6 +163,81 @@ body {
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.next-button {
+  position: fixed;
+  left: calc(100vw - 75px);
+  top: calc(100vh - 75px);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chevron-forward{
+  fill: var(--white);
+  width: 18px;
+  height: 18px;
+}
+
+.ssn-input {
+  margin-top: 24px;
+  font-family: 'Roboto';
+  text-align: center;
+  font-size: 14px;
+  width: 280px;
+}
+
+.add-input-button {
+  margin-top: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-svg{
+  fill: var(--white);
+  width: 18px;
+}
+
+.minus-button{
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+  margin-left: 14px;
+}
+
+.filler{
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+  margin-top: 14px;
+  margin-left: 14px;
+}
+
+.input-contain {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
