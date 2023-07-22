@@ -1,1 +1,1 @@
-export * from "./Web3AuthModalPack";
+export * from "./web3AuthModalPack";

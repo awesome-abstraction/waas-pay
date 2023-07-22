@@ -19,6 +19,18 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/config.js", "src/apollo.js", "src/app/_app.js", "src/lib/index.js", "src/lib/errors.js", "src/lib/Web3AuthModalPack.js", "src/app/components/SSOButton.js"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/config.js",
+    "src/lib/apollo.js",
+    "src/app/_app.js",
+    "src/lib/index.js",
+    "src/lib/errors.js",
+    "src/lib/web3AuthModalPack.js",
+    "src/app/components/SSOButton.js"
+  ],
   "exclude": ["node_modules"]
 }
