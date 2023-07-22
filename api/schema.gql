@@ -3,46 +3,38 @@ enum WalletType {
   BICONOMY
 }
 
-input WalletFeature {
-  id: String!
-  serializedParams: String
-}
-
-type CreateWalletFromMetadataResponse {
-  status: Int!
-}
-
-type Mutation {
-  createWalletFromMetadata(
-    walletType: WalletType!
-    features: [WalletFeature!]!
-  ): CreateWalletFromMetadataResponse!
-}
-
 type Query {
   ping: String!
 }
 
-input User {
-  phoneOrEmail: String!
-}
-
-input SaveToIpfsInput {
+type UserWalletsMeta {
+  companyName: String!
   walletType: WalletType!
-  features: [WalletFeature!]!
-  users: [User!]!
+  minaSmartContractAddress: String!
 }
 
-type UserCid {
-  phoneOrEmail: String!
-  cid: String!
+type UserWalletsMetaResponse {
+  status: Int!
+  data: UserWalletsMeta
 }
 
-type SaveToIpfsResponse {
-  userCids: [UserCid!]
+type Query {
+  getUserWalletsMeta(cid: String!): UserWalletsMetaResponse!
+}
+
+input SaveUserWalletsMetaInput {
+  companyName: String!
+  walletType: WalletType!
+  minaSmartContractAddress: String!
+}
+
+type SaveUserWalletsMetaResponse {
+  cid: String
   status: Int!
 }
 
 type Mutation {
-  safeToIpfsNode(input: SaveToIpfsInput!): SaveToIpfsResponse!
+  saveUserWalletsMeta(
+    input: SaveUserWalletsMetaInput!
+  ): SaveUserWalletsMetaResponse!
 }
