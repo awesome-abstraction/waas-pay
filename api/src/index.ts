@@ -5,7 +5,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { FsBlockstore } from "blockstore-fs";
 import { readFileSync } from "fs";
 import { createHelia } from "helia";
-import resolvers from "./resolvers";
+import resolvers from "./resolvers/index.js";
 
 type AsyncReturnType<T extends (...args: any) => Promise<any>> = T extends (
   ...args: any
