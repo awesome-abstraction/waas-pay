@@ -29,23 +29,25 @@ As a wallet recipient, I receive a feature-rich wallet to privately receive and 
 - Transactions are sponsored - gas is paid for by the wallet issuer.
 - Fiat on and off-ramps are provided by trusted partners like Stripe and Monerium.
 
+### ⚒️ How it's made
+WaaS Pay is a simple React app that leverages a number of novel technologies to enable the no-code customization, creation, and deployment of smart contract accounts for web2 users:
+
+- **Safe{Core} Protocol Kit** and the **Safe{Core} Account Abstraction SDK** are used to instantiate & deploy smart contract account wallets. The Auth Kit, OnRamp Kit, and Relay Kit are all used alongside the Protocol Kit to deploy feature-rich smart contract accounts.
+- Custom **Safe** plugins to further enhance the user experience and capabilities of the smart contract accounts for a wider range of use cases, including:
+    - TODO
+- **zkBob** is used to facilitate anonymous transactions between the end-user and issuing organization. Upon wallet creation, a zkAccount is instantiated & linked so that the organization (e.g. employer) can send funds to the recipient privately.
+- **Mina Protocol’s SnarkyJS library** is used for generating and validating the zero-knowledge proofs required to verify that only the intended recipient of a wallet can actually deploy one.
+- **Polygon zkEVM** is the blazing fast and secure L2 blockchain that all the smart contract accounts are deployed to.
+- A self-hosted *IPFS node* deployed using Helia is used to store all the hashed sensitive metadata from vendors & employees.
+
 #### 📍 Roadmap
 
 We intend to continue building this project beyond the hackathon and the below are some immediate/short-term improvements we're planning to make.
 - Adding support for the bulk-creation of smart contract accounts for larger organizations
+- Integration of the Ethereum Attestation Service (EAS) to prove fund provenance when required by regulatory bodies/authorities.
 - Adding more Safe plugins - primarily focused on enhancing the user experience for handling payments
 - Support for Safe smart contract account deployments on more EVM chains
 - Add optional identification features such as PolygonID, SismoConnect, and WorldCoinID
 - Building an open-source SDK to let developers add their custom, organization-specific Safe plugins to our platform
 - Integration with Push Notifications infrastructure 
 - Extending support for Biconomy, Metamask Snaps, and dfns wallet infrastructures.
-
-### ⚒️ How it's made
-WaaS Pay is a simple React app that leverages a number of novel technologies to enable the no-code customization, creation, and deployment of smart contract accounts for web2 users:
-
-- **Safe{Core} Protocol Kit** and the **Safe{Core} Account Abstraction SDK** are used to instantiate & deploy smart contract account wallets. The Auth Kit, OnRamp Kit, and Relay Kit are all used alongside the Protocol Kit to deploy feature-rich smart contract accounts.
-- Custom **Safe** plugins to further enhance the user experience and capabilities of the smart contract accounts - including: customizable recovery methods, time-based policies, and allow/block lists.
-- **zkBob** is used to facilitate anonymous transactions between the end-user and issuing organization. Upon wallet creation, a zkAccount is instantiated & linked so that the organization (e.g. employer) can send funds to the recipient privately.
-- **Mina Protocol’s SnarkyJS library** is used for generating and validating the zero-knowledge proofs required to verify that only the intended recipient of a wallet can actually deploy one.
-- **Polygon zkEVM** is the blazing fast and secure L2 blockchain that all the smart contract accounts are deployed to.
-- A self-hosted *IPFS node* deployed using Helia is used to store all the hashed sensitive metadata from vendors & employees.
