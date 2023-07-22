@@ -14,6 +14,32 @@ const mutations: MutationResolvers = {
           params: serializedParams ? JSON.parse(serializedParams) : null,
         })
       );
+
+      const deserializedPayload = { walletType, features };
+      /*
+      deserializedPayload example:
+
+      {
+        walletType: 'SAFE',
+        features: [
+          {
+            id: 'auth',
+            // optional
+            params: {
+              arg1: value,
+              arg2: value
+            }
+          },
+          {
+            id: 'relay',
+            // optional
+            params: {
+              arg1: value
+          }
+        ]
+      }
+      */
+
       return { status: 200 };
     } catch {
       return { status: 400 };
