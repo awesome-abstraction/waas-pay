@@ -3,14 +3,16 @@ import { useSwiper } from 'swiper/react';
 import DesignSvg from "../assets/DesignSvg"
 import "./Signup.css"
 
-export default ({ name, setName }) => {
+export default ({ name, setName, setRenderButton }) => {
   const swiper = useSwiper();
+
   const changeHandler = (e) => {
     setName(e.target.value)
   }
 
   const getStartedHandler = (e) => {
     swiper.slideNext()
+    setRenderButton(true)
   }
 
   return(

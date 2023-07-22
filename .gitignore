@@ -1,9 +1,6 @@
 ## macOS stuff
 .DS_Store
 
-## FE Compiled JS
-build
-
 ## BE Compiled JS
 dist
 
