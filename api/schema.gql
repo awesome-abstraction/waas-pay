@@ -5,7 +5,7 @@ enum WalletType {
 
 input WalletFeature {
   id: String!
-  serializedParams: String!
+  serializedParams: String
 }
 
 type CreateWalletFromMetadataResponse {
@@ -21,4 +21,28 @@ type Mutation {
 
 type Query {
   ping: String!
+}
+
+input User {
+  phoneOrEmail: String!
+}
+
+input SaveToIpfsInput {
+  walletType: WalletType!
+  features: [WalletFeature!]!
+  users: [User!]!
+}
+
+type UserCid {
+  phoneOrEmail: String!
+  cid: String!
+}
+
+type SaveToIpfsResponse {
+  userCids: [UserCid!]
+  status: Int!
+}
+
+type Mutation {
+  safeToIpfsNode(input: SaveToIpfsInput!): SaveToIpfsResponse!
 }

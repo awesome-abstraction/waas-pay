@@ -1,0 +1,17 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.1"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "yarn build && node dist/index.js"
+  }
+}

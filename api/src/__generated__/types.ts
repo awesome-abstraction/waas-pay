@@ -25,6 +25,7 @@ export type CreateWalletFromMetadataResponse = {
 export type Mutation = {
   __typename?: 'Mutation';
   createWalletFromMetadata: CreateWalletFromMetadataResponse;
+  safeToIpfsNode: SaveToIpfsResponse;
 };
 
 
@@ -33,14 +34,41 @@ export type MutationCreateWalletFromMetadataArgs = {
   walletType: WalletType;
 };
 
+
+export type MutationSafeToIpfsNodeArgs = {
+  input: SaveToIpfsInput;
+};
+
 export type Query = {
   __typename?: 'Query';
   ping: Scalars['String']['output'];
 };
 
+export type SaveToIpfsInput = {
+  features: Array<WalletFeature>;
+  users: Array<User>;
+  walletType: WalletType;
+};
+
+export type SaveToIpfsResponse = {
+  __typename?: 'SaveToIpfsResponse';
+  status: Scalars['Int']['output'];
+  userCids?: Maybe<Array<UserCid>>;
+};
+
+export type User = {
+  phoneOrEmail: Scalars['String']['input'];
+};
+
+export type UserCid = {
+  __typename?: 'UserCid';
+  cid: Scalars['String']['output'];
+  phoneOrEmail: Scalars['String']['output'];
+};
+
 export type WalletFeature = {
   id: Scalars['String']['input'];
-  serializedParams: Scalars['String']['input'];
+  serializedParams?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum WalletType {
@@ -124,7 +152,11 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  SaveToIpfsInput: SaveToIpfsInput;
+  SaveToIpfsResponse: ResolverTypeWrapper<SaveToIpfsResponse>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  User: User;
+  UserCid: ResolverTypeWrapper<UserCid>;
   WalletFeature: WalletFeature;
   WalletType: WalletType;
 };
@@ -136,7 +168,11 @@ export type ResolversParentTypes = {
   Int: Scalars['Int']['output'];
   Mutation: {};
   Query: {};
+  SaveToIpfsInput: SaveToIpfsInput;
+  SaveToIpfsResponse: SaveToIpfsResponse;
   String: Scalars['String']['output'];
+  User: User;
+  UserCid: UserCid;
   WalletFeature: WalletFeature;
 };
 
@@ -147,15 +183,30 @@ export type CreateWalletFromMetadataResponseResolvers<ContextType = ServerContex
 
 export type MutationResolvers<ContextType = ServerContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createWalletFromMetadata?: Resolver<ResolversTypes['CreateWalletFromMetadataResponse'], ParentType, ContextType, RequireFields<MutationCreateWalletFromMetadataArgs, 'features' | 'walletType'>>;
+  safeToIpfsNode?: Resolver<ResolversTypes['SaveToIpfsResponse'], ParentType, ContextType, RequireFields<MutationSafeToIpfsNodeArgs, 'input'>>;
 };
 
 export type QueryResolvers<ContextType = ServerContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   ping?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
+export type SaveToIpfsResponseResolvers<ContextType = ServerContext, ParentType extends ResolversParentTypes['SaveToIpfsResponse'] = ResolversParentTypes['SaveToIpfsResponse']> = {
+  status?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  userCids?: Resolver<Maybe<Array<ResolversTypes['UserCid']>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UserCidResolvers<ContextType = ServerContext, ParentType extends ResolversParentTypes['UserCid'] = ResolversParentTypes['UserCid']> = {
+  cid?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  phoneOrEmail?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = ServerContext> = {
   CreateWalletFromMetadataResponse?: CreateWalletFromMetadataResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  SaveToIpfsResponse?: SaveToIpfsResponseResolvers<ContextType>;
+  UserCid?: UserCidResolvers<ContextType>;
 };
 
