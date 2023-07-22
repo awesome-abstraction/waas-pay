@@ -4,6 +4,7 @@ import type { MutationResolvers } from "../__generated__/types";
 const mutations: MutationResolvers = {
   saveUserWalletsMeta: async (_parent, { input }, { ipfsNode }) => {
     try {
+      console.log("Saving Metadata", input);
       const jsonNode = json(ipfsNode);
       const cid = await jsonNode.add(input);
       console.log("Created CID", cid);
