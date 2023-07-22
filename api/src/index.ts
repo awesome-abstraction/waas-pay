@@ -26,13 +26,12 @@ const start = async () => {
     resolvers,
   });
 
+  const ipfsNode = (await createHelia({
+    blockstore: fsBlocktore,
+  })) as AsyncReturnType<typeof createHelia>;
+
   const { url } = await startStandaloneServer(server, {
-    context: async () => {
-      const ipfsNode = (await createHelia({
-        blockstore: fsBlocktore,
-      })) as AsyncReturnType<typeof createHelia>;
-      return { ipfsNode };
-    },
+    context: async () => ({ ipfsNode }),
   });
 
   console.log(`🚀 Server listening at: ${url}`);
