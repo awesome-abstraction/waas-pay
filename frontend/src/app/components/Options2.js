@@ -29,10 +29,7 @@ export default ({ fill, formValues, setFormValues }) => {
   
   const handleRemoveField = (index) => {
     let copyFormValues = [...formValues]
-    // console.log("pre", formValues.length, formValues)
-    // console.log("removeing", index)
     copyFormValues.splice(index, 1)
-    // console.log("post", formValues)
     setFormValues(copyFormValues)
   }
 

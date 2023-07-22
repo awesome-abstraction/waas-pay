@@ -1,18 +1,39 @@
 import { useEffect, useState } from "react"
+import { gql, useQuery, useMutation } from "@apollo/client";
 import { cyrb53 } from "../utils/hash"
 import Review from "../assets/Review"
 import Loader from "../assets/Loader"
-import { useSwiper } from "swiper/react"
+import { SAVE_META_DATA_MUTATION } from "../forDan/page"
+
+let smartAddy;
 
 export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageNum }) => {
   const [loadingState, setLoadingState] = useState();
-
+  const [saveMetaData, { loading: saveLoading, error: saveError }] = useMutation(SAVE_META_DATA_MUTATION);
   
-  useEffect(async () => {
+  useEffect(() => {
+    async function requests () {
+      const minaAddy = await deployMina()
+      await callGql(minaAddy)
+    }
+
     if (pageNum == 4){
-      await deployMina()
+      setRenderButton(false)
+      requests()
     }
   }, [pageNum])
+
+  const callGql = async (minaAddy) => {
+    const result = await saveMetaData({
+      variables: { input: {
+        walletType: selectedWallet.id.toUpperCase(),
+        companyName: name,
+        minaSmartContractAddress: minaAddy
+      }},
+    });
+    console.log('called')
+  }
+
   const deployMina = async () => {
     setLoadingState("MINA_STARTUP")
 
@@ -70,6 +91,7 @@ export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageN
     }
 
     setLoadingState("GRAPHQL")
+    return zkAppAddress;
   }
 
   return (<div className="slide-padding signup-container slide-scrollable">

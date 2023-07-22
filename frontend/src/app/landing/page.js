@@ -20,6 +20,7 @@ import './styles.css';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
+import { WithApolloClient } from "../../lib/apollo";
 
 export default function App() {
   const [name, setName] = useState("")
@@ -41,7 +42,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <WithApolloClient>
       <Swiper
         direction={'horizontal'}
         pagination={{
@@ -61,7 +62,6 @@ export default function App() {
             name={name} 
             fill={loginFillColor} 
             setupFillColor={setLoginFillColor}
-            setPageNum={setPageNum}
             />
             
         </SwiperSlide>
@@ -69,7 +69,6 @@ export default function App() {
           <Options2 fill={loginFillColor}
             formValues={formValues}
             setFormValues={setFormValues}
-            setPageNum={setPageNum}
           />
         </SwiperSlide>
         <SwiperSlide><Options3 fill={loginFillColor} setPageNum={setPageNum}
@@ -82,7 +81,6 @@ export default function App() {
             name={name}
             selectedWallet={selectedWallet}
             setRenderButton={setRenderButton}
-            setPageNum={setPageNum}
             pageNum={pageNum}
           />
         </SwiperSlide>
@@ -90,6 +88,6 @@ export default function App() {
       {renderButton && <div className='next-button' onClick={nextButtonClicked}>
         <ChevronForward className={"chevron-forward"} />
       </div>}
-    </>
+    </WithApolloClient>
   );
 }
