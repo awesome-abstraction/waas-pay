@@ -4,7 +4,7 @@
 ===========
 
 ### 💌 TLDR
-A no-code platform for organizations to build, customize, and deploy smart contract accounts (ERC4337) on behalf of their employees and vendors to facilitate instantaneous payments while preserving privacy with SNARK proofs - all with a seamless web2 experience.
+A no-code platform for organizations to build & deploy smart contract accounts (ERC4337) on behalf of their employees and vendors for instantaneous payments while preserving privacy with SNARK proofs - all with a seamless web2 experience.
 
 ### 💪 Motivation
 Nobody disputes that ERC4337 is a major catalyst on our journey to on-board the next billion users to web3. However on the 6 largest EVM chains (Etheruem, Polygon, Arbitrum, Avalanche, Optimism, and Gnosis), there have only been [31,000 smart contract accounts created](https://dune.com/sixdegree/account-abstraction-overview) compared to over [*1 million* active EOA addresses on the same chains](https://defillama.com/). Its clear that novel, genuine applications of ERC4337 for web2 users are needed to accelerate adoption.
