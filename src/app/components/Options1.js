@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useSwiper } from 'swiper/react';
 import SignupSvg from "../assets/SignupSvg"
 import SelectableOption from "./SelectableOption";
@@ -37,7 +37,17 @@ export default ({ name }) => {
 
   const [isDropdownClicked, setIsDropdownClicked] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState();
+  const nodeRef = useRef(null);
 
+  const dropdownHandler = () => {
+    console.log("clicked")
+    setIsDropdownClicked(!isDropdownClicked);
+  }
+
+  const optionHandler = (option) => {
+    setSelectedWallet(option)
+    setIsDropdownClicked(false)
+  }
 
   return(
     <div className="slide-padding signup-container slide-scrollable">
@@ -50,20 +60,18 @@ export default ({ name }) => {
           Different wallets come with different features, pick the ones that fit best for your needs.
         </h3>
         <div style={{ "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
-          <div onClick={() => {
-              setIsDropdownClicked(!isDropdownClicked)
-          }} className="selected-wallet-container">
+          <div onClick={dropdownHandler} className="selected-wallet-container">
               {selectedWallet ? <span className="selected-wallet-name">{selectedWallet.name}</span> : <span className="selected-wallet-placeholder">Select a wallet</span>}
               <KaratDown className={`${isDropdownClicked && "rotated"} karat`}/>
           </div>
             
         </div>
         <div>
-          <CSSTransition in={isDropdownClicked} timeout={300} classNames="dropdown-option-container">
-            <div>
-            {selectOptions.map(option => <div key={option.id}>
-              {option.name}
-            </div>)}
+          <CSSTransition unmountOnExit nodeRef={nodeRef} in={isDropdownClicked} timeout={300} classNames="dropdown-option-container">
+            <div ref={nodeRef} className={"dropdown-option-container"}>
+              {selectOptions.map(option => <div key={option.id} value={option} className={"option-item"} onClick={() => optionHandler(option)}> 
+                {option.name}
+              </div>)}
             </div>
           </CSSTransition>
         </div>

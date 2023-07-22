@@ -142,7 +142,7 @@ body {
 
 .slide-text-container-scrollable{
   background: linear-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,1) 40px);
-  margin-top: 400px !important;
+  margin-top: 300px !important;
   padding-top: 80px;
   z-index: 1;
 }
@@ -163,4 +163,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.next-button {
+  position: fixed;
+  left: calc(100vw - 75px);
+  top: calc(100vh - 75px);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chevron-forward{
+  fill: var(--white);
+  width: 18px;
+  height: 18px;
 }
