@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  env: {
+    API_URL: process.env.API_URL,
+  },
 
+  reactStrictMode: false,
 
   webpack(config) {
     config.resolve.alias = {
@@ -36,4 +39,5 @@ module.exports = {
   env: {
     API_URL: process.env.API_URL,
   },
+  ...nextConfig
 };

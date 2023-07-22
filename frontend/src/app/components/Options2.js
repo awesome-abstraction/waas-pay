@@ -33,6 +33,8 @@ export default ({ fill, formValues, setFormValues }) => {
     const Local = Mina.LocalBlockchain({ proofsEnabled: false });
     Mina.setActiveInstance(Local);
 
+    console.log("dsfdsf")
+
     const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
     const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 
@@ -49,9 +51,20 @@ export default ({ fill, formValues, setFormValues }) => {
 
     await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 
-    const txn1 = await Mina.transaction(senderAccount, () => {
-      zkAppInstance.update(Field(9));
-    });
+    try {
+      const txn1 = await Mina.transaction(senderAccount, () => {
+        zkAppInstance.updateEmployerHash(Field(9));
+      });
+      await txn1.prove();
+      await txn1.sign([senderKey]).send();
+    } catch(e) {
+      console.log(ex.message);
+    }
+
+    const num2 = zkAppInstance.employerHash.get();
+    console.log('state after txn2:', num2.toString());
+
+
 
     // // get the initial state of ValidAccounts after deployment
     // try {
