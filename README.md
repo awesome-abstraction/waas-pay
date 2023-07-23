@@ -1,4 +1,4 @@
-<img src="./assets/logo-wide.png" width="1000">
+<img src="./assets/logo-wide.png" width="1000>
 
 👛 WaaS Pay
 ===========
