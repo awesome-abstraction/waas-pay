@@ -254,6 +254,7 @@ path { transition: fill .75s ease; }
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-top: 42px;
 }
 

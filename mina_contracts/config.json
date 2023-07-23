@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "deployAliases": {
+    "berkley": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/berkley.json",
+      "feepayerKeyPath": "/Users/danielkim/.cache/zkapp-cli/keys/dan.json",
+      "feepayerAlias": "dan",
+      "fee": "0.1",
+      "smartContract": "ValidAccounts"
+    },
+    "dan1": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/dan1.json",
+      "feepayerKeyPath": "/Users/danielkim/.cache/zkapp-cli/keys/da.json",
+      "feepayerAlias": "da",
+      "fee": "0.1"
+    }
+  }
+}

@@ -6,6 +6,8 @@ import Loader from "../assets/Loader"
 import { SAVE_META_DATA_MUTATION } from "../forDan/page"
 import { getLocal, init } from "../utils/localMinaChain";
 
+export const DEPLOYED_SC_ADDRESS = "5JuRMAZJkMjjPQ7vXWv5gG34FAbDUcqrLAZyzAgWkMXv2JbPvQ69"
+
 export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageNum, nextButtonClicked, setCid }) => {
   const [loadingState, setLoadingState] = useState("MINA_STARTUP");
   const [saveMetaData, { loading: saveLoading, error: saveError }] = useMutation(SAVE_META_DATA_MUTATION);
@@ -42,16 +44,16 @@ export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageN
     await ValidAccounts.compile()
 
     
-    const Network =Mina.Network("https://proxy.berkeley.minaexplorer.com/graphql")
-    Mina.setActiveInstance(Network)
-    // const local = await getLocal();
-    // Mina.setActiveInstance(local);
+    // const Network = Mina.Network("https://proxy.berkeley.minaexplorer.com/graphql")
+    // Mina.setActiveInstance(Network)
+    const local = await getLocal();
+    Mina.setActiveInstance(local);
 
-    // const { privateKey: deployerKey, publicKey: deployerAccount } = local.testAccounts[0];
-    // const { privateKey: senderKey, publicKey: senderAccount } = local.testAccounts[1];
+    const { privateKey: deployerKey, publicKey: deployerAccount } = local.testAccounts[0];
 
-    const deployerKey = PrivateKey.fromBase58("EKELS6TNcSNM5f1bJ51ZwjELXgNq5YptyGQXPucsNHtKzmFYHZpY");
-    const deployerAccount = PublicKey.fromBase58("B62qp2YkCH7E9NvoQx2ttd2D1aPDPY6ToJhZTcCh1bvW9fcKsAYT8kk");
+    // TEST NET KEY
+    // const deployerKey = PrivateKey.fromBase58("EKE1fW5V7KNvBmCK1y24wtw6TNLNc2UWmQ34hqu4M7UFbwRnvWVG");
+    // const deployerAccount = PublicKey.fromPrivateKey(deployerKey);
 
     // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
     const zkAppPrivateKey = PrivateKey.random();
@@ -67,7 +69,7 @@ export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageN
     });
 
     await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
-    console.log("sc deployed")
+
     // Claim employer hash for this contract
     setLoadingState("MINA_TRANSACT")
     try {
@@ -81,7 +83,6 @@ export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageN
       console.log(e.message);
     }
     
-
     // Update the merklemap with the hashed SSNs
     try {
       const txn2 = await Mina.transaction(deployerAccount, () => {
@@ -100,6 +101,23 @@ export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageN
     return zkAppAddress;
   }
 
+  const getLoadingMessages = () => {
+    let text;
+    if(loadingState === "MINA_STARTUP"){
+      text = "Starting up Mina instance..."
+    }
+    if (loadingState === "MINA_CONTRACT_DEPLOY"){
+      text = `Deploying the ValidAccounts Smart Contract to ${zkAppAddress}...`
+    }
+    if (loadingState === "MINA_TRANSACT"){
+      text = "Adding hashed user IDs to the chain..."
+    }
+    if (loadingState === "GRAPHQL"){
+      text = "Storing metadata about the batch..."
+    }
+    return <h3 style={{"marginTop": "24px"}}>{text}</h3>
+  }
+
   return (<div className="slide-padding signup-container slide-scrollable">
     <Waiting className={"options-fixed-background"} fill={fill}/>
     <div className="slide-text-container slide-text-container-scrollable" style={{"marginTop": "40px"}}>
@@ -112,6 +130,7 @@ export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageN
       </div>
       <div className="loader-container">
         {loadingState && <Loader className={"loader-final"} fill={"#e84393"}/>}
+        {getLoadingMessages()}
       </div>
     </div>
   )

@@ -8,11 +8,18 @@ import { useState, useEffect } from "react";
 import Loader from "../assets/Loader";
 import { cyrb53 } from "../utils/hash"
 import { getLocal } from "../utils/localMinaChain"
+import { useRouter } from 'next/navigation'
 
 export default ({ pageNum, zkAppAddress, id }) => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+
   useEffect(() => {
     async function requests () {
+      setLoading(true)
       const res = await deployMina()
+      setLoading(false)
+      router.push(`/wallet/${id}`)
     }
     if (pageNum == 2){
       requests()
@@ -26,13 +33,17 @@ export default ({ pageNum, zkAppAddress, id }) => {
     const local = await getLocal();
     Mina.setActiveInstance(local);
 
-    const { privateKey: deployerKey, publicKey: deployerAccount } = local.testAccounts[0];
+    // TEST NET KEY
+    // const deployerKey = PrivateKey.fromBase58("EKE1fW5V7KNvBmCK1y24wtw6TNLNc2UWmQ34hqu4M7UFbwRnvWVG");
+    // const deployerAccount = PublicKey.fromPrivateKey(deployerKey);
+
+    // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
+    // const zkAppPrivateKey = PrivateKey.random();
+    // const zkAppAddress = zkAppPrivateKey.toPublicKey();
+
     const { privateKey: senderKey, publicKey: senderAccount } = local.testAccounts[1];
     await fetchAccount(zkAppAddress);
     const zkAppInstance = new ValidAccounts(zkAppAddress);
-    Provable.log('employer hash', zkAppInstance.employerHash.getAndAssertEquals());
-    console.log('zkAppInstance', zkAppAddress)
-    console.log('zkAppInstance', zkAppInstance)
     try {
       const txn1 = await Mina.transaction(senderAccount, () => {
         const hashedValue = cyrb53(id)
@@ -59,7 +70,7 @@ export default ({ pageNum, zkAppAddress, id }) => {
         </h3>
 
         <div style={{ "marginTop": "32px"}}>
-          <Loader className={"loader-final"} fill={"#e84393"}/>
+          {loading && <Loader className={"loader-final"} fill={"#e84393"}/>}
         </div>
         
       </div>

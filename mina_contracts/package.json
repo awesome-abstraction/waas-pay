@@ -1,5 +1,5 @@
 {
-  "name": "sudoku",
+  "name": "01-hello-world",
   "version": "0.1.0",
   "description": "",
   "author": "",
@@ -21,8 +21,7 @@
     "prepare": "husky install",
     "test": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js",
     "testw": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --watch",
-    "lint": "npx eslint src/* --fix",
-    "start": "node build/src/run.js"
+    "lint": "npx eslint src/* --fix"
   },
   "lint-staged": {
     "**/*": [
@@ -49,3 +48,5 @@
     "snarkyjs": "0.12.*"
   }
 }
+
+

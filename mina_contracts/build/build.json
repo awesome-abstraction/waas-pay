@@ -1,0 +1,6 @@
+{
+  "smartContracts": [
+    "Square",
+    "ValidAccounts"
+  ]
+}
