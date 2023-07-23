@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Field, SmartContract, MerkleMap, state, State, method, Character, Provable, Poseidon } from 'snarkyjs';
+import { Field, SmartContract, MerkleMap, state, State, method, Poseidon } from 'snarkyjs';
 export class ValidAccounts extends SmartContract {
     constructor() {
         super(...arguments);
@@ -27,17 +27,13 @@ export class ValidAccounts extends SmartContract {
         this.employerHash.assertEquals(employerHash);
         // hasn't been used yet, set it
         this.employerHash.set(Poseidon.hash([inputEmployerHash]));
-        Provable.log("set value", inputEmployerHash);
-        Provable.log("set successful", this.employerHash.get());
     }
     addToMapOfEmployees(inputEmployerHash, inputEmployeeHash) {
-        Provable.log("starting");
         // precondition
         const mapRoot = this.mapRoot.get();
         this.mapRoot.assertEquals(mapRoot);
         // ensure state of merkleMap and mapRoot align
         this.mapRoot.assertEquals(this.mapOfEmployees.getRoot());
-        Provable.log("input employable hash", inputEmployerHash);
         // ensure only employer can do this
         if (this.employerHash.getAndAssertEquals().equals(inputEmployerHash)) {
             return false;
@@ -46,39 +42,34 @@ export class ValidAccounts extends SmartContract {
         this.mapOfEmployees.set(inputEmployeeHash, Field(1));
         this.mapRoot.set(this.mapOfEmployees.getRoot());
     }
-    verifyEmployee(inputEmployeeId) {
+    // @method verifyEmployee(inputEmployeeId: Field){
+    //   // precondition
+    //   const mapRoot = this.mapRoot.get();
+    //   this.mapRoot.assertEquals(mapRoot);
+    //   // ensure state of merkleMap and mapRoot align
+    //   this.mapRoot.assertEquals(this.mapOfEmployees.getRoot());
+    //   const employeeStatus = this.mapOfEmployees.get(inputEmployeeId)
+    //   // doesnt exist in map return False
+    //   if (employeeStatus.equals(0)){
+    //     return false
+    //   }
+    //   // exist in map, hasn't been claimed
+    //   if (employeeStatus.equals(1)){
+    //     return true
+    //   }
+    //   // this hash was already used to create
+    //   else {
+    //     return false
+    //   }
+    // }
+    claimEmployeeHash(inputEmployeeHash) {
         // precondition
         const mapRoot = this.mapRoot.get();
         this.mapRoot.assertEquals(mapRoot);
         // ensure state of merkleMap and mapRoot align
         this.mapRoot.assertEquals(this.mapOfEmployees.getRoot());
-        const employeeStatus = this.mapOfEmployees.get(inputEmployeeId);
-        // doesnt exist in map return False
-        if (employeeStatus.equals(0)) {
-            return false;
-        }
-        // exist in map, hasn't been claimed
-        if (employeeStatus.equals(1)) {
-            return true;
-        }
-        // this hash was already used to create
-        else {
-            return false;
-        }
-    }
-    claimEmployeeHash(inputEmployeeHash, walletAddress) {
-        // precondition
-        const mapRoot = this.mapRoot.get();
-        this.mapRoot.assertEquals(mapRoot);
-        // ensure state of merkleMap and mapRoot align
-        this.mapRoot.assertEquals(this.mapOfEmployees.getRoot());
-        const employeeStatus = this.mapOfEmployees.get(inputEmployeeHash);
-        // doesnt exist in map return False
-        if (employeeStatus.equals(0)) {
-            return false;
-        }
         // update states
-        this.mapOfEmployees.set(inputEmployeeHash, Field(2));
+        // this.mapOfEmployees.set(inputEmployeeHash, Field(2))
         this.mapRoot.set(this.mapOfEmployees.getRoot());
     }
 }
@@ -106,12 +97,6 @@ __decorate([
     method,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Field]),
-    __metadata("design:returntype", void 0)
-], ValidAccounts.prototype, "verifyEmployee", null);
-__decorate([
-    method,
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Field, Character]),
     __metadata("design:returntype", void 0)
 ], ValidAccounts.prototype, "claimEmployeeHash", null);
 //# sourceMappingURL=ValidAccounts.js.map
