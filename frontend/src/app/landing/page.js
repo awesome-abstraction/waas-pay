@@ -29,7 +29,7 @@ export default function App() {
     label: "Name",
     type: "text",
     value: "",
-    placeholder: "Enter an identifier for this user"
+    placeholder: "Enter a unique identifier for this user"
   }])
   const [swiper, setSwiper] = useState(null);
   const [renderButton, setRenderButton] = useState(false)

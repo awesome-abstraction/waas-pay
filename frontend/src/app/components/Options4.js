@@ -98,10 +98,10 @@ export default ({ formValues, name, selectedWallet, fill, setRenderButton, pageN
     <Review className={"options-fixed-background"} fill={fill}/>
     <div className="slide-text-container slide-text-container-scrollable" style={{"marginTop": "40px"}}>
       <h1>
-        Sit tight, we'll take it from here!
+        Sit tight, we'll take it from here.
       </h1>
       <h3>
-        Generating you a nice link for your users to visit and create a wallet
+        Generating you a simple link to give to your users to redeem & deploy their new wallets!
       </h3>
       </div>
       <div className="loader-container">
