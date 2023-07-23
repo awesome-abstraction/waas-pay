@@ -9,8 +9,10 @@ import {
   useCreateWallet,
 } from "./context/CreateWalletContext";
 import Relay from "./components/Relay";
+import config from "../../../config";
 
 const Page = () => {
+  console.log("config", config, process.env);
   return (
     <SafeThemeProvider mode="dark">
       {(safeTheme) => (

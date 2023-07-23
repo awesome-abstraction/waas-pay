@@ -2,6 +2,7 @@ import { utils } from "ethers";
 import { useState } from "react";
 import { useCreateWallet } from "../context/CreateWalletContext";
 import GelatoTaskStatus from "./GelatoStatus";
+import config from "../../../../config";
 
 const transferAmount = 0.01;
 
@@ -9,6 +10,7 @@ const Relay = () => {
   const {
     chainId,
     chain,
+    safes,
     safeSelected,
     safeBalance,
     isRelayerLoading,
@@ -21,6 +23,8 @@ const Relay = () => {
 
   const [transactionHash, setTransactionHash] = useState("");
 
+  console.log("key", config.gelatoRelayApiKey);
+
   // TODO: ADD PAY FEES USING USDC TOKEN
 
   const hasNativeFunds =
@@ -31,6 +35,7 @@ const Relay = () => {
 
   return (
     <>
+      <p>Safes: {JSON.stringify(safes)}</p>
       {!isAuthenticated ? (
         <div>
           <button onClick={loginWeb3Auth}>Connect Relay Kit</button>
@@ -92,7 +97,7 @@ const Relay = () => {
                   <span>
                     You need funds,{" "}
                     <a href={chain.faucetUrl} target="_blank">
-                      request 0.5 {chain.token}.
+                      request {transferAmount} {chain.token}.
                     </a>
                   </span>
                 )}
@@ -113,7 +118,6 @@ const Relay = () => {
 
               {safeSelected && (
                 <div style={{ display: "flex", gap: "0.5rem" }}>
-                  <p>{safeSelected}</p>
                   <p>{"->"}</p>
                   <p>{safeSelected}</p>
                 </div>
