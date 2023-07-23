@@ -24,6 +24,9 @@
     "@web3auth/base": "^6.1.4",
     "@web3auth/modal": "^6.1.5",
     "@web3auth/openlogin-adapter": "^6.1.4",
+    "@web3uikit/core": "^1.1.5",
+    "@web3uikit/icons": "^1.1.2",
+    "@web3uikit/web3": "^0.3.2",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
     "eslint-plugin-snarkyjs": "^0.1.0",
@@ -36,7 +39,9 @@
     "react-dom": "18.2.0",
     "react-transition-group": "^4.4.5",
     "snarkyjs": "0.*",
-    "swiper": "^10.0.4"
+    "styled-components": "^6.0.5",
+    "swiper": "^10.0.4",
+    "web3-validator": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "20.4.2",

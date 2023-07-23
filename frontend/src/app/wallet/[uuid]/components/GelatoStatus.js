@@ -1,12 +1,11 @@
 import { GelatoRelayPack } from "@safe-global/relay-kit";
 import { useCallback, useEffect } from "react";
-
+import { Typography } from "@web3uikit/core";
 import { getChainById } from "../context/chains";
 import useApi from "../context/useApi";
 
 const pollingTime = 4_000; // 4 seconds of polling time to update the Gelato task status
 
-// TODO: rename this to TrackGelatoTaskStatus
 const GelatoTaskStatus = ({
   gelatoTaskId,
   chainId,
@@ -20,13 +19,8 @@ const GelatoTaskStatus = ({
 
   const { data: gelatoTaskInfo } = useApi(fetchGelatoTaskInfo, pollingTime);
 
-  console.log("gelatoTaskInfo: ", gelatoTaskInfo);
-
   const chain = getChainById(chainId);
-
   const isCancelled = gelatoTaskInfo?.taskState === "Cancelled";
-  const isSuccess = gelatoTaskInfo?.taskState === "ExecSuccess";
-  const isLoading = !isCancelled && !isSuccess;
 
   useEffect(() => {
     if (gelatoTaskInfo?.transactionHash) {
@@ -36,32 +30,39 @@ const GelatoTaskStatus = ({
 
   return (
     <div>
-      <p>Gelato Task details</p>
-      {isLoading && <p>Loading...</p>}
-      {/* Status label */}
       {gelatoTaskInfo?.taskState ? (
-        <p>{getGelatoTaskStatusLabel(gelatoTaskInfo.taskState)}</p>
+        <Typography variant="caption12" color="#FFFF">
+          {getGelatoTaskStatusLabel(gelatoTaskInfo.taskState)}
+        </Typography>
       ) : (
-        <p>Loading Status</p>
+        <Typography variant="caption12" color="#FFB700">
+          Loading status...
+        </Typography>
       )}
       {/* Transaction hash */}
       {!isCancelled && (
         <div>
-          <p>Transaction: </p>
           {transactionHash ? (
-            <a
-              href={`${chain?.blockExplorerUrl}/tx/${transactionHash}`}
-              target="_blank"
-            >
-              {transactionHash}
-            </a>
+            <>
+              <Typography variant="h5" color="#FFFF">
+                Transaction Hash:{" "}
+              </Typography>
+              <Typography variant="body16" color="#FFFF">
+                <a
+                  href={`${chain?.blockExplorerUrl}/tx/${transactionHash}`}
+                  target="_blank"
+                >
+                  {transactionHash}
+                </a>
+              </Typography>
+            </>
           ) : (
-            <p>Loading Hash...</p>
+            <Typography variant="caption12" color="#FFB700">
+              Loading hash...
+            </Typography>
           )}
         </div>
       )}
-
-      {/* Task extra info */}
       {gelatoTaskInfo?.lastCheckMessage && (
         <span>{gelatoTaskInfo.lastCheckMessage}</span>
       )}
