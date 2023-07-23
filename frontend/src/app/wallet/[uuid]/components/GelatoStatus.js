@@ -28,26 +28,21 @@ const GelatoTaskStatus = ({
     }
   }, [gelatoTaskInfo, setTransactionHash]);
 
+  const status =
+    gelatoTaskInfo?.taskState &&
+    getGelatoTaskStatusLabel(gelatoTaskInfo.taskState);
+
   return (
     <div>
-      {gelatoTaskInfo?.taskState ? (
-        <Typography variant="caption12" color="#FFFF">
-          {getGelatoTaskStatusLabel(gelatoTaskInfo.taskState)}
-        </Typography>
-      ) : (
-        <Typography variant="caption12" color="#FFB700">
-          Loading status...
-        </Typography>
-      )}
       {/* Transaction hash */}
       {!isCancelled && (
         <div>
           {transactionHash ? (
             <>
-              <Typography variant="h5" color="#FFFF">
+              <Typography variant="body16" color="#FFFF">
                 Transaction Hash:{" "}
               </Typography>
-              <Typography variant="body16" color="#FFFF">
+              <Typography variant="caption14" color="#FFFF">
                 <a
                   href={`${chain?.blockExplorerUrl}/tx/${transactionHash}`}
                   target="_blank"
@@ -63,8 +58,17 @@ const GelatoTaskStatus = ({
           )}
         </div>
       )}
-      {gelatoTaskInfo?.lastCheckMessage && (
-        <span>{gelatoTaskInfo.lastCheckMessage}</span>
+      {status ? (
+        <Typography
+          variant="caption12"
+          color={status === "Success" ? "green" : "#FFFF"}
+        >
+          {status}
+        </Typography>
+      ) : (
+        <Typography variant="caption12" color="#FFB700">
+          Loading status...
+        </Typography>
       )}
     </div>
   );

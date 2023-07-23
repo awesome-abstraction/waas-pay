@@ -11,7 +11,7 @@ import GelatoTaskStatus from "./GelatoStatus";
 const Relay = () => {
   const [chainId, setChainId] = useState("0x5"); // 5 === goreli 100;
   const [destinationAddress, setDestinationAddress] = useState("");
-  const [amount, setAmount] = useState(0.01);
+  const [amount, setAmount] = useState(0.001);
 
   const {
     ownerAddress,
@@ -192,7 +192,13 @@ const Relay = () => {
                 hasNoFunds ||
                 hasInsufficientFunds
               }
-              onClick={() => relayTransaction(web3Provider, safeSelected)}
+              onClick={() =>
+                relayTransaction(
+                  web3Provider,
+                  destinationAddress,
+                  String(amount)
+                )
+              }
             />
             {(hasNoFunds || hasInsufficientFunds) &&
               getChainById(chainId)?.faucetUrl && (

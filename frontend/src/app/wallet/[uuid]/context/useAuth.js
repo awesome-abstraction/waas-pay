@@ -1,10 +1,10 @@
 import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from "@web3auth/base";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { ethers } from "ethers";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import config from "../../../../config";
 import { Web3AuthModalPack } from "../../../../lib";
-import { goerliChain } from "./chains";
+import { goerliChain, mumbaiChain } from "./chains";
 
 const getAuthOptions = (chain) => ({
   clientId: config.web3AuthClientId,
@@ -65,7 +65,7 @@ const useAuth = (initialChain = goerliChain) => {
   useEffect(() => {
     if (web3AuthModalPack && web3AuthModalPack.getProvider()) {
       (async () => {
-        await login();
+        await loginWeb3Auth();
       })();
     }
   }, [web3AuthModalPack]);

@@ -4,14 +4,14 @@ import {
   EthHashInfo,
   SafeThemeProvider,
 } from "@safe-global/safe-react-components";
+import { Typography } from "@web3uikit/core";
+import styled from "styled-components";
 import SSOButton from "../../components/SSOButton";
 import Relay from "./components/Relay";
 import {
   CreateWalletContextProvider,
   useCreateWallet,
 } from "./context/CreateWalletContext";
-import { Button, Dropdown, Input, Loading, Typography } from "@web3uikit/core";
-import styled from "styled-components";
 
 const Page = () => {
   return (
@@ -51,7 +51,7 @@ const App2 = () => {
           variant="h1"
           color="#fff"
         >
-          WaSS Wallet
+          WaaS Wallet
         </Typography>
         <SSOButton
           onLogin={loginWeb3Auth}

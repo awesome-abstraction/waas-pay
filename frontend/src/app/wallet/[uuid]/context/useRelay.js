@@ -18,12 +18,7 @@ const useRelay = () => {
   // relay-kit implementation using Gelato
   const relayTransaction = useCallback(
     // make signer instead?
-    async (
-      web3Provider,
-      safeAddress,
-      destinationAddress = "0x7A67fF6354d983B6cfc3a7f7C5BA93f73C864b32",
-      amount = "0.001"
-    ) => {
+    async (web3Provider, destinationAddress, amount) => {
       if (web3Provider) {
         setIsRelayerLoading(true);
 
