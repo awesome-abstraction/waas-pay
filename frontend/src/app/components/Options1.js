@@ -10,17 +10,18 @@ import "./Options1.css"
 
 export const SAFE_WALLET_DATA = {
   logo: safeLogo,
-  points: ["Allow your employees to authenticate their new wallet with socials",
-  "Enable purchasing of funds directly from credit cards",
-  "Manage and pay gas fees on behalf of users"],
+  points: ["Allow your recipients to authenticate with social login methods",
+  "Enable popular fiat on/off ramps",
+  "Sponsor your user's gas fees",
+  "Add policies like blocklists for your users"],
   textColor: "#0FFF80"
 }
 
 export const BICONOMY_WALLET_DATA = {
   logo: biconomyLogo,
-  points: ["More biconomy stuff so",
-  "Wow other cool neat features so cool",
-  "Blah blah some other cool feature"],
+  points: ["Explore the power of Biconomy!",
+  "Orange wallets are cool",
+  "More wallets, the better!"],
   textColor: "#FF4F17"
 }
 
@@ -96,10 +97,10 @@ export default ({ name, fill, setupFillColor, selectedWallet, setSelectedWallet 
       <SignupSvg className={"options-fixed-background"} loginFill={fill}/>
       <div className="slide-text-container slide-text-container-scrollable" style={{"marginTop": "40px"}}>
         <h1>
-          {`What sort of wallet do you want to create for ${name}`}
+          {`What brand of wallet do you want to create for ${name}`}
         </h1>
         <h3>
-          Different wallets come with different features, pick the ones that fit best for your needs.
+          Different wallets come with different features, pick the ones that fit best the needs of your recipients.
         </h3>
         <div style={{ "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
           <div onClick={dropdownHandler} className="selected-wallet-container">

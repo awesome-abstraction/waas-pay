@@ -1,14 +1,17 @@
 "use client";
-import { EthHashInfo } from "@safe-global/safe-react-components";
 import { ThemeProvider } from "@mui/material";
-import { SafeThemeProvider } from "@safe-global/safe-react-components";
+import {
+  EthHashInfo,
+  SafeThemeProvider,
+} from "@safe-global/safe-react-components";
 import SSOButton from "../../components/SSOButton";
-import useAuth from "./context/useAuth";
+import Relay from "./components/Relay";
 import {
   CreateWalletContextProvider,
   useCreateWallet,
 } from "./context/CreateWalletContext";
-import Relay from "./components/Relay";
+import { Button, Dropdown, Input, Loading, Typography } from "@web3uikit/core";
+import styled from "styled-components";
 
 const Page = () => {
   return (
@@ -41,102 +44,64 @@ const App2 = () => {
   }
 
   return (
-    <>
-      <SSOButton
-        onLogin={loginWeb3Auth}
-        onLogout={logoutWeb3Auth}
-        userInfo={userInfo}
-        isLoggedIn={!!isAuthenticated}
-      />
-      {ownerAddress && (
-        <div style={{ display: "flex", columnGap: "4rem" }}>
-          <div>
-            <h3>Account</h3>
-            <hr />
-            <EthHashInfo
-              address={ownerAddress}
-              showCopyButton
-              showPrefix
-              prefix={getPrefix("0x5")}
-            />
+    <Container>
+      <div>
+        <Typography
+          style={{ marginTop: "4rem", marginBottom: "1rem" }}
+          variant="h1"
+          color="#fff"
+        >
+          WaSS Wallet
+        </Typography>
+        <SSOButton
+          onLogin={loginWeb3Auth}
+          onLogout={logoutWeb3Auth}
+          userInfo={userInfo}
+          isLoggedIn={!!isAuthenticated}
+        />
+        {ownerAddress && (
+          <div style={{ display: "flex", columnGap: "4rem" }}>
+            <div>
+              <h3>Account</h3>
+              <hr />
+              <EthHashInfo
+                address={ownerAddress}
+                showCopyButton
+                showPrefix
+                prefix={getPrefix("0x5")}
+              />
+            </div>
+            <div>
+              <h3>Available Safes</h3>
+              <hr />
+              {safes.length ? (
+                safes.map((safe) => (
+                  <div key={safe}>
+                    <EthHashInfo
+                      address={safe}
+                      showCopyButton
+                      shortAddress={false}
+                    />
+                  </div>
+                ))
+              ) : (
+                <p>No Available Safes</p>
+              )}
+            </div>
           </div>
-          <div>
-            <h3>Available Safes</h3>
-            <hr />
-            {safes.length ? (
-              safes.map((safe) => (
-                <div key={safe}>
-                  <EthHashInfo
-                    address={safe}
-                    showCopyButton
-                    shortAddress={false}
-                  />
-                </div>
-              ))
-            ) : (
-              <p>No Available Safes</p>
-            )}
-          </div>
-        </div>
-      )}
-    </>
+        )}
+      </div>
+    </Container>
   );
 };
 
-const App = () => {
-  const {
-    userInfo,
-    ownerAddress,
-    chain,
-    safes,
-    isAuthenticated,
-    web3Provider,
-    loginWeb3Auth,
-    logoutWeb3Auth,
-  } = useAuth();
-
-  return (
-    <>
-      <SSOButton
-        onLogin={loginWeb3Auth}
-        onLogout={logoutWeb3Auth}
-        userInfo={userInfo}
-        isLoggedIn={!!isAuthenticated}
-      />
-      {ownerAddress && (
-        <div style={{ display: "flex", columnGap: "4rem" }}>
-          <div>
-            <h3>Account</h3>
-            <hr />
-            <EthHashInfo
-              address={ownerAddress}
-              showCopyButton
-              showPrefix
-              prefix={getPrefix("0x5")}
-            />
-          </div>
-          <div>
-            <h3>Available Safes</h3>
-            <hr />
-            {safes.length ? (
-              safes.map((safe) => (
-                <div key={safe}>
-                  <EthHashInfo
-                    address={safe}
-                    showCopyButton
-                    shortAddress={false}
-                  />
-                </div>
-              ))
-            ) : (
-              <p>No Available Safes</p>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
+const Container = styled.div`
+  display: flex;
+  padding: 4rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+`;
 
 const getPrefix = (chainId) => {
   switch (chainId) {

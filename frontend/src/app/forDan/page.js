@@ -79,7 +79,7 @@ const ForDan = () => {
           Custom Company Name (to get diff result)
         </p>
         <input
-          placeholder="Enter company name"
+          placeholder="Enter your organization's name"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value || "")}
         />

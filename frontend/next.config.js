@@ -9,7 +9,7 @@ const nextConfig = {
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
-      snarkyjs: require('path').resolve('node_modules/snarkyjs')
+      snarkyjs: require("path").resolve("node_modules/snarkyjs"),
     };
     config.experiments = { ...config.experiments, topLevelAwait: true };
     return config;
@@ -19,27 +19,28 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
           },
           {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp',
+            key: "Cross-Origin-Embedder-Policy",
+            value: "require-corp",
           },
         ],
       },
     ];
-  }
+  },
 };
 
 module.exports = {
+  ...nextConfig,
   env: {
     API_URL: process.env.API_URL,
     WEB3AUTH_CLIENT_ID: process.env.WEB3AUTH_CLIENT_ID,
-    GOERLI_INFURA_KEY: process.env.INFURA_KEY,
+    GOERLI_INFURA_KEY: process.env.GOERLI_INFURA_KEY,
+    GELATO_RELAY_API_KEY: process.env.GELATO_RELAY_API_KEY,
   },
-  ...nextConfig
 };

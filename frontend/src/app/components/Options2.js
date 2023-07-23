@@ -22,7 +22,7 @@ export default ({ fill, formValues, setFormValues }) => {
       label: "Name",
       type: "text",
       value: "",
-      placeholder: "Enter an identifier for this user"
+      placeholder: "Enter a unique identifier for this user that only they will know. Note: this will be protected by zero-knowledge proofs!"
     });
     setFormValues(values);
   };
@@ -37,10 +37,10 @@ export default ({ fill, formValues, setFormValues }) => {
     <Form className={"options-fixed-background"} fill={fill}/>
     <div className="slide-text-container slide-text-container-scrollable" style={{"marginTop": "40px"}}>
         <h1>
-          {`Lets get some information about your users`}
+          {`Lets get some information about your users:`}
         </h1>
         <h3>
-          We'll need a way to verify users identity when they create these <b>{formValues.length}</b> wallets
+          We'll need a way to verify users identity when they create these <b>{formValues.length}</b> smart contract accounts
         </h3>
 
       <div style={{"display": "flex", "flexDirection": "column", "alignItems": "center"}}>
