@@ -9,6 +9,7 @@
 .name-signup {
   font-size: 18px;
   margin: 10px 0;
+  font-family: 'Roboto';
 }
 
 .signup-already-have-acc {
@@ -23,4 +24,11 @@
 .signin{
   color: var(--primary);
   font-weight: 700;
+}
+
+.identifiers-preview {
+  font-size: 14px;
+  color: var(--black);
+  font-family: 'Roboto';
+  margin: 6px 0;
 }

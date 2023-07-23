@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Field, SmartContract, MerkleMap, state, State, method, Character, Provable } from 'snarkyjs';
+import { Field, SmartContract, MerkleMap, state, State, method, Character, Provable, Poseidon } from 'snarkyjs';
 export class ValidAccounts extends SmartContract {
     constructor() {
         super(...arguments);
@@ -26,23 +26,22 @@ export class ValidAccounts extends SmartContract {
         const employerHash = this.employerHash.get();
         this.employerHash.assertEquals(employerHash);
         // hasn't been used yet, set it
-        this.employerHash.set(inputEmployerHash);
+        this.employerHash.set(Poseidon.hash([inputEmployerHash]));
+        Provable.log("set value", inputEmployerHash);
+        Provable.log("set successful", this.employerHash.get());
     }
     addToMapOfEmployees(inputEmployerHash, inputEmployeeHash) {
+        Provable.log("starting");
         // precondition
         const mapRoot = this.mapRoot.get();
         this.mapRoot.assertEquals(mapRoot);
-        Provable.log("map of employees", this.mapOfEmployees);
-        const employerHash = this.employerHash.get();
-        this.employerHash.assertEquals(employerHash);
-        Provable.log("map of employees root", this.mapOfEmployees.getRoot());
-        Provable.log("this map of employees root", this.mapRoot);
         // ensure state of merkleMap and mapRoot align
         this.mapRoot.assertEquals(this.mapOfEmployees.getRoot());
-        Provable.log("employer hash", employerHash);
         Provable.log("input employable hash", inputEmployerHash);
         // ensure only employer can do this
-        employerHash.assertEquals(inputEmployerHash);
+        if (this.employerHash.getAndAssertEquals().equals(inputEmployerHash)) {
+            return false;
+        }
         // update states
         this.mapOfEmployees.set(inputEmployeeHash, Field(1));
         this.mapRoot.set(this.mapOfEmployees.getRoot());

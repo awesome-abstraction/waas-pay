@@ -239,3 +239,24 @@ path { transition: fill .75s ease; }
   justify-content: center;
   align-items: center;
 }
+
+.option-3-safe-img-container {
+  height: 84px !important;
+  margin: 20px 0;
+}
+
+.option-3-biconomy-img-container {
+  margin: 14px 0;
+  height: 70px !important;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 42px;
+}
+
+.loader-final {
+  width: 90px;
+}

@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Signup from '../components/Signup';
 import Options1 from '../components/Options1'
 import Options2 from "../components/Options2"
+import Options3 from "../components/Options3"
+import Options4 from "../components/Options4"
 import ChevronForward from "../assets/ChevronForward";
 
 // Import Swiper styles
@@ -18,6 +20,7 @@ import './styles.css';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
+import { WithApolloClient } from "../../lib/apollo";
 
 export default function App() {
   const [name, setName] = useState("")
@@ -31,9 +34,15 @@ export default function App() {
   const [swiper, setSwiper] = useState(null);
   const [renderButton, setRenderButton] = useState(false)
   const [loginFillColor, setLoginFillColor] = useState("#E84393");
+  const [pageNum, setPageNum] = useState(1)
+
+  const nextButtonClicked = () => {
+    swiper.slideNext()
+    setPageNum(pageNum + 1)
+  }
 
   return (
-    <>
+    <WithApolloClient>
       <Swiper
         direction={'horizontal'}
         pagination={{
@@ -52,7 +61,9 @@ export default function App() {
             setSelectedWallet={setSelectedWallet} 
             name={name} 
             fill={loginFillColor} 
-            setupFillColor={setLoginFillColor}/>
+            setupFillColor={setLoginFillColor}
+            />
+            
         </SwiperSlide>
         <SwiperSlide>
           <Options2 fill={loginFillColor}
@@ -60,11 +71,23 @@ export default function App() {
             setFormValues={setFormValues}
           />
         </SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide><Options3 fill={loginFillColor} setPageNum={setPageNum}
+            formValues={formValues} name={name} selectedWallet={selectedWallet}/>
+          </SwiperSlide>
+        <SwiperSlide>
+          <Options4
+            fill={loginFillColor}
+            formValues={formValues}
+            name={name}
+            selectedWallet={selectedWallet}
+            setRenderButton={setRenderButton}
+            pageNum={pageNum}
+          />
+        </SwiperSlide>
       </Swiper>
-      {renderButton && <div className='next-button' onClick={() => swiper.slideNext()}>
+      {renderButton && <div className='next-button' onClick={nextButtonClicked}>
         <ChevronForward className={"chevron-forward"} />
       </div>}
-    </>
+    </WithApolloClient>
   );
 }

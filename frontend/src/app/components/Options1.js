@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useSwiper } from 'swiper/react';
 import SignupSvg from "../assets/SignupSvg"
 import SelectableOption from "./SelectableOption";
@@ -8,7 +8,7 @@ import safeLogo from "../assets/safe-logo.png"
 import biconomyLogo from "../assets/biconomy-logo.png"
 import "./Options1.css"
 
-const SAFE_WALLET_DATA = {
+export const SAFE_WALLET_DATA = {
   logo: safeLogo,
   points: ["Allow your employees to authenticate their new wallet with socials",
   "Enable purchasing of funds directly from credit cards",
@@ -16,7 +16,7 @@ const SAFE_WALLET_DATA = {
   textColor: "#0FFF80"
 }
 
-const BICONOMY_WALLET_DATA = {
+export const BICONOMY_WALLET_DATA = {
   logo: biconomyLogo,
   points: ["More biconomy stuff so",
   "Wow other cool neat features so cool",
@@ -25,26 +25,6 @@ const BICONOMY_WALLET_DATA = {
 }
 
 export default ({ name, fill, setupFillColor, selectedWallet, setSelectedWallet }) => {
-  const options = [
-    {
-      id: 1,
-      title: "This is some fumby text",
-      description: "This is some more dumby text describing what the title means and what this does",
-      requiresAdditionalInfo: false
-    },
-    {
-      id: 2,
-      title: "This is some fumby text",
-      description: "This is some more dumby text describing what the title means and what this does",
-      requiresAdditionalInfo: true
-    },
-    {
-      id: 3,
-      title: "This is some fumby text",
-      description: "This is some more dumby text describing what the title means and what this does",
-      requiresAdditionalInfo: true
-    },
-  ]
   const selectOptions = [{
     id: "safe",
     name: "Safe"

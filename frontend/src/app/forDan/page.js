@@ -3,7 +3,7 @@ import { gql, useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
 import { WithApolloClient } from "../../lib/apollo";
 
-const SAVE_META_DATA_MUTATION = gql`
+export const SAVE_META_DATA_MUTATION = gql`
   mutation SaveUserWalletsMeta($input: SaveUserWalletsMetaInput!) {
     saveUserWalletsMeta(input: $input) {
       status
@@ -12,7 +12,7 @@ const SAVE_META_DATA_MUTATION = gql`
   }
 `;
 
-const GET_META_DATA_QUERY = gql`
+export const GET_META_DATA_QUERY = gql`
   query GetUsersWalletsMeta($cid: String!) {
     getUserWalletsMeta(cid: $cid) {
       data {
