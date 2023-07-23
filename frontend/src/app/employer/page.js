@@ -9,6 +9,7 @@ import Options1 from '../components/Options1'
 import Options2 from "../components/Options2"
 import Options3 from "../components/Options3"
 import Options4 from "../components/Options4"
+import Options5 from '../components/Options5';
 import ChevronForward from "../assets/ChevronForward";
 
 // Import Swiper styles
@@ -35,6 +36,7 @@ export default function App() {
   const [renderButton, setRenderButton] = useState(false)
   const [loginFillColor, setLoginFillColor] = useState("#E84393");
   const [pageNum, setPageNum] = useState(1)
+  const [cid, setCid] = useState()
 
   const nextButtonClicked = () => {
     swiper.slideNext()
@@ -81,7 +83,20 @@ export default function App() {
             name={name}
             selectedWallet={selectedWallet}
             setRenderButton={setRenderButton}
+            nextButtonClicked={nextButtonClicked}
             pageNum={pageNum}
+            setCid={setCid}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Options5
+            fill={loginFillColor}
+            formValues={formValues}
+            name={name}
+            selectedWallet={selectedWallet}
+            setRenderButton={setRenderButton}
+            pageNum={pageNum}
+            cid={cid}
           />
         </SwiperSlide>
       </Swiper>

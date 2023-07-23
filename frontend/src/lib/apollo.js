@@ -4,6 +4,7 @@ import config from "../config";
 const client = new ApolloClient({
   uri: config.apiUrl,
   cache: new InMemoryCache(),
+  ssrMode: typeof window === 'undefined'
 });
 
 export const WithApolloClient = ({ children }) => (
