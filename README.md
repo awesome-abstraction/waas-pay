@@ -24,17 +24,18 @@ As an organization wishing to leverage the blockchain for instant payments to my
 As a wallet recipient, I receive a feature-rich wallet to privately receive and send funds on Polygon without needing to know anything about web3:
 
 - Log-in with my favorite authentication methods - no seed phrases or master passwords.
-- A zkBob Account already set up for instantly receiving direct deposit funds
+- A zkBob Account can quickly be connected and used to receive direct deposit payments anonomously.
 - The unique and sensitive credentials I use to redeem my wallet never leave my device & are secured by zero-knowledge proofs.
 - Transactions are sponsored - gas is paid for by the wallet issuer.
-- Fiat on and off-ramps are provided by trusted partners like Stripe and Monerium.
+- Novel, custom plugins developed for me by my issuing organization.
 
 ### ⚒️ How it's made
 WaaS Pay is a simple React app that leverages a number of novel technologies to enable the no-code customization, creation, and deployment of smart contract accounts for web2 users:
 
 - **Safe{Core} Protocol Kit** and the **Safe{Core} Account Abstraction SDK** are used to instantiate & deploy smart contract account wallets. The Auth Kit, OnRamp Kit, and Relay Kit are all used alongside the Protocol Kit to deploy feature-rich smart contract accounts.
 - Custom **Safe** plugins to further enhance the user experience and capabilities of the smart contract accounts for a wider range of use cases, including:
-    - TODO
+    - Deadman switch (to trigger the sending of assets to another address after inactivity some time has elapsed)
+    - Block/Allowlist (to explicity restrict or enable interactions with other smart contracts)
 - **zkBob Direct Deposit** is used to facilitate anonymous transactions between the issuing organization & the recipient. Upon wallet creation, a zkAccount is instantiated & linked so that the organization (e.g. employer) can directly deposit funds to the recipient's zkAccount - obfuscating both the recipient & the amount.
 - **Mina Protocol’s SnarkyJS library** is used for generating and validating the zero-knowledge proofs required to verify that only the intended recipient of a wallet can actually deploy one.
 - **Polygon** is the blazing fast and secure L2 blockchain that all the smart contract accounts are deployed to.
@@ -43,6 +44,7 @@ WaaS Pay is a simple React app that leverages a number of novel technologies to 
 #### 📍 Roadmap
 
 We intend to continue building this project beyond the hackathon and the below are some immediate/short-term improvements we're planning to make.
+- Adding support for automatic zkBob account instantiation and linking at the time of wallet deployment for a web2 user 
 - Adding support for the bulk-creation of smart contract accounts for larger organizations
 - Integration of the Ethereum Attestation Service (EAS) to prove fund provenance when required by regulatory bodies/authorities.
 - Adding more Safe plugins - primarily focused on enhancing the user experience for handling payments
