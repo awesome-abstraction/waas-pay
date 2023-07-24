@@ -39,8 +39,8 @@ module.exports = {
   ...nextConfig,
   env: {
     API_URL: process.env.API_URL,
-    WEB3AUTH_CLIENT_ID: "BAmtsfQHppsQm0QlezpQd_B5VLSwnagIDl9sNrWelUDJ7wY9fE6xaAkBdQvPRR_A4bM-OmVacCs0fVv3xpdBCig",
-    GOERLI_INFURA_KEY: "70a25844c6ff4c1fafd502976e4d97da",
-    GELATO_RELAY_API_KEY: "8tRGqLgTPDYGWBUC45SsbYUgAhJJbVwPUrqqmXK3UrI_",
+    WEB3AUTH_CLIENT_ID: "",
+    GOERLI_INFURA_KEY: "",
+    GELATO_RELAY_API_KEY: "",
   },
 };
